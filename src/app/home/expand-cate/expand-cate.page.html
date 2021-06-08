@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar class="toolbar-color">
+    <ion-title class="ml-2 text-white h3 mt-2">
+     {{header}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-item button *ngFor="let i of category" lines="none" (click)="goNext(i)">
+    {{i}}
+  </ion-item>
+</ion-content>

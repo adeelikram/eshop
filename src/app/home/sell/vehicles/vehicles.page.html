@@ -1,0 +1,75 @@
+<app-sell-header [hidden]="hide_toolbar"></app-sell-header>
+
+<ion-content #content>
+  <div [hidden]="item!='Cars'">
+    
+      <ion-select mode="ios" interface="action-sheet" placeholder="Brand" [(ngModel)]="input.brand" class="border">
+
+        <ion-select-option class="h3" *ngFor="let i of brands" [value]="i">
+          {{i}}
+        </ion-select-option>
+      </ion-select>
+    
+
+    <ion-item lines="none" [hidden]="!errors[0]" class="item-height">
+      <ion-text class="text-danger d-block">{{errors[0]}}</ion-text>
+      <div id="locater"></div>
+    </ion-item>
+  </div>
+
+  <div *ngFor="let i of objs" [hidden]="!visibility_check.includes(item)">
+    <ion-item class="item-height">
+      <ion-label>
+        {{i.label}}
+      </ion-label>
+      <ion-input [(ngModel)]="input[i.label.split(' ')[0].toLowerCase()]"
+        [maxlength]="(i.label=='Year')?4:6"></ion-input>
+    </ion-item>
+    <ion-item lines="none" [hidden]="!errors[i.n]" class="item-height">
+      <ion-text class="text-danger d-block ">
+        {{errors[i.n]}}</ion-text>
+    </ion-item>
+  </div>
+
+  <div [hidden]="item!='Cars'">
+    
+      <ion-select class="border border-top-0" mode="ios" interface="action-sheet" placeholder="Register In" [(ngModel)]="input.register">
+
+        <ion-select-option class="h3" *ngFor="let i of cities" [value]="i">
+          {{i}}
+        </ion-select-option>
+      </ion-select>
+    
+    <ion-item lines="none" [hidden]="!errors[3]" class="item-height border-top">
+      <ion-text class="text-danger d-block ">{{errors[3]}}</ion-text>
+    </ion-item>
+  </div>
+
+  <div [hidden]="item!='Cars'">
+      <ion-select class="border border-top-0" mode="ios" interface="action-sheet" placeholder="Fuel" [(ngModel)]="input.fuel">
+        <ion-select-option class="h3" *ngFor="let i of fuel" [value]="i">
+          {{i}}
+        </ion-select-option>
+      </ion-select>
+    <ion-item lines="none" [hidden]="!errors[4]" class="item-height">
+      <ion-text class="text-danger d-block ">{{errors[4]}}</ion-text>
+    </ion-item>
+  </div>
+
+  <div [hidden]="item!='Spare Parts'">
+    <ion-item class="item-height" lines="none">
+      <ion-text color="medium"> Type </ion-text>
+    </ion-item>
+    <ion-item class="mb-3 mt-0" lines="none">
+      <ion-segment [(ngModel)]="input.type" class="mx-auto border rounded">
+        <ion-segment-button value="cars">
+          Cars Parts
+        </ion-segment-button>
+        <ion-segment-button value="other">
+          Other Parts
+        </ion-segment-button>
+      </ion-segment>
+    </ion-item>
+  </div>
+  <app-sell-last (getData)="gotData($event)"></app-sell-last>
+</ion-content>

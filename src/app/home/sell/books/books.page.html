@@ -1,0 +1,14 @@
+<app-sell-header></app-sell-header>
+
+<ion-content>
+     <ion-select placeholder="Select your Book Type" class="border" [(ngModel)]="input.type" interface="action-sheet" mode="ios" [hidden]="item!='Books & Magazines'">
+             <ion-select-option *ngFor="let i of types" [value]="i">
+                    {{i}}
+             </ion-select-option>
+     </ion-select>
+     <ion-item lines="none" class="item-height" [hidden]="!errors[0]">
+         <ion-text  class="text-left text-danger">{{errors[0]}}</ion-text>
+     </ion-item>
+     <app-sell-last (getData)="gotData($event)"></app-sell-last>
+
+</ion-content>

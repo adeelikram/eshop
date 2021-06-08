@@ -1,0 +1,16 @@
+<app-sell-header></app-sell-header>
+
+<ion-content>
+    <ion-item [hidden]="!types">
+        <ion-label color="medium">{{item}}</ion-label>
+        <ion-select interface="popover" [(ngModel)]="input.type" >
+            <ion-select-option *ngFor="let i of types" [value]="i">
+                {{i}}
+            </ion-select-option>
+        </ion-select>
+    </ion-item>
+    <ion-item lines="none" class="item-height" [hidden]="!errors[0]">
+        <ion-text class="text-left text-danger">{{errors[0]}}</ion-text>
+    </ion-item>
+    <app-sell-last (getData)="gotData($event)"></app-sell-last>
+</ion-content>

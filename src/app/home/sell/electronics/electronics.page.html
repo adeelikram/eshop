@@ -1,0 +1,29 @@
+<app-sell-header></app-sell-header>
+
+<ion-content>
+
+    <ion-select placeholder="Type" mode="ios" interface="action-sheet" [(ngModel)]="input.type" class="border"
+        [hidden]="!types">
+        <ion-select-option *ngFor="let i of types" [value]="i">
+            {{i}}
+        </ion-select-option>
+    </ion-select>
+    <ion-item lines="none" class="item-height" [hidden]="!errors[0]">
+        <ion-text class="text-left text-danger">{{errors[0]}}</ion-text>
+    </ion-item>
+
+    <div [hidden]="!item.includes('TV')" class="mt-2">
+        <ion-item class="item-height" lines="none">
+          <span class="text-secondary"> Type </span>
+        </ion-item>
+        <ion-item lines="none" class="item-height">
+            <ion-segment class="border rounded ml-5 mr-5" [(ngModel)]="input.type">
+                <ion-segment-button value="tv">TV</ion-segment-button>
+                <ion-segment-button value="video-audio">VIDEO-AUDIO</ion-segment-button>
+            </ion-segment>
+        </ion-item>
+    </div>
+    <app-sell-last (getData)="gotData($event)">
+
+    </app-sell-last>
+</ion-content>

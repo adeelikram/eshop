@@ -1,0 +1,20 @@
+<app-sell-header></app-sell-header>
+
+<ion-content >
+
+  <ion-select class="border" mode="ios" interface="action-sheet" placeholder="Brand*"
+    [(ngModel)]="input.brand">
+    <ion-label positon="stacked">Brand</ion-label>
+    <ion-select-option class="h3" *ngFor="let i of brands" [value]="i">
+      {{i}}
+    </ion-select-option>
+  </ion-select>
+  <ion-item lines="none" class="item-height">
+    <ion-text class="text-danger d-block my-0">{{brand_error}}</ion-text>
+  </ion-item>
+  
+  
+  
+  <!--from extras/sell-last-->
+  <app-sell-last  (getData)="gotData($event)"></app-sell-last>
+</ion-content>

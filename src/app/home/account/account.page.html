@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar class="toolbar-color">
+    <ion-buttons>
+      <ion-menu-button color="light">
+      </ion-menu-button>
+      <ion-title color="light">Account</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light" [hidden]="!registered">
+
+  <div id="group">
+    <ion-avatar class="mx-auto menu-avatar pt-3 mb-2" slot="start">
+      <ion-img [src]="image" [hidden]="!image"></ion-img>
+      <ion-img src="assets/person-circle.svg" color="light" [hidden]="image"></ion-img>
+    </ion-avatar>
+    <ion-label class="text-center">
+      <h1 class="text-white" (click)="seeProfile()"><u>Edit Profile</u></h1>
+    </ion-label>
+  </div>
+
+
+  <ion-item id="settings" class="" (click)="animate(options)" button color="light" lines="full">
+    <ion-icon size="large" name="settings"></ion-icon>
+    <ion-label class="ml-2">
+      <span class="h5">Setting</span>
+    </ion-label>
+  </ion-item>
+
+  <ion-item-group id="options" #options>
+    <ion-item>
+      <ion-label>Notifications</ion-label>
+      <ion-toggle #toggle (ionChange)="notification(toggle)" slot="end"></ion-toggle>
+    </ion-item>
+
+    <ion-item button (click)="delete()">
+      <ion-label>Deactivate and Delete My Account </ion-label>
+    </ion-item>
+  </ion-item-group>
+
+  <ion-item color="light" lines="full" button (click)="privacy()">
+    <ion-icon size="large" name="alert-circle"></ion-icon>
+    <ion-label class="ml-2">
+      <span class="h5">Privacy and Terms of Service</span>
+    </ion-label>
+  </ion-item>
+  <!--below tag is just used for making space-->
+  <ion-item lines="none" id="null" color="light"></ion-item>
+</ion-content>
+
+<ion-content class="content-2" [hidden]="registered">
+
+  <ion-button class="login-btn" (click)="login()" shape="round">
+    Login
+  </ion-button>
+
+</ion-content>

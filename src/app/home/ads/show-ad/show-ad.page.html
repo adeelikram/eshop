@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar class="toolbar-color">
+    <ion-title color="light">Ad Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides class="slides-top" pager="ios" #slides (ionSlideNextStart)="slideChange(1)"
+    (ionSlideNextEnd)="slideChange(2)" (ionSlidePrevStart)="slideChange(1)" (ionSlidePrevEnd)="slideChange(2)">
+    <ion-slide *ngFor="let v of product.images" [style.backgroundImage]="'url('+v+') !important'" class="slide-img">
+      <ion-fab-button color="light" class="arrow-back" (click)="slides.slidePrev()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light" class="arrow-forward" (click)="slides.slideNext()">
+        <ion-icon name="arrow-forward"></ion-icon>
+      </ion-fab-button>
+    </ion-slide>
+  </ion-slides>
+  <ion-grid class="border-bottom" fixed>
+    <ion-row [hidden]="from !=='ads'">
+      <ion-col color="light"
+        class="border-right border-bottom border-top h3 text-dark d-flex align-items-center justify-content-center">
+        {{product.likes}}
+        <ion-icon size="large" name="heart"></ion-icon>
+      </ion-col>
+      <ion-col color="light"
+        class="border-left border-bottom border-top h3 text-dark d-flex align-items-center justify-content-center">
+        {{product.views}}
+        <ion-icon size="large" name="eye"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <div class="d-inline">
+      <span class="h4 text-dark">Details</span>
+      <ion-icon size="large" class="float-right" [hidden]="hideFav" [name]="fav_icon" (click)="Fav()"></ion-icon>
+    </div>
+    <ion-row class="mt-1" *ngFor="let i of items()">
+      <ion-col class="text-ml-2 " size="6">
+        {{i[0].toUpperCase()+i.slice(1)}}
+      </ion-col>
+      <ion-col size="6">
+        {{forUserView[i]}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="border-bottom ml-1" fixed>
+    <span class="d-block h5 text-dark">Description</span>
+    <p class="mt line-height">
+      {{userP.describe}}
+    </p>
+  </ion-grid>
+
+  <ion-item lines="full" button>
+    <ion-avatar slot="start">
+      <img [src]="userP.image" />
+    </ion-avatar>
+    <ion-label>
+      {{parent['displayName']}}
+    </ion-label>
+  </ion-item>
+
+  <div class="mt-2 mx-auto map mb-2 rounded border border-primary" id="map"></div>
+  <div class="h-10"></div>
+  <footer class="bottom z-index" id="footer">
+    <ion-tab-bar>
+      <ion-tab-button class="bg-whatsapp" (click)="chat()">
+        <ion-icon size="large" color="light" name="chatbubble"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button (click)="makeCall()" class="bg-call">
+        <ion-icon size="large" color="light" name="call"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button (click)="sendSMS()" class="bg-sms">
+        <ion-icon size="large" color="light" name="chatbox"></ion-icon>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </footer>
+</ion-content>

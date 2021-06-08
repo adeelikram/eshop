@@ -1,0 +1,48 @@
+<ion-content>
+  <div class="my-container position-relative">
+
+    <ion-button fill="clear" slot="start" (click)="goback()">
+      <ion-icon slot="icon-only" color="light" name="arrow-back"></ion-icon>
+    </ion-button>
+
+    <!--fab-button for changing edit  -->
+    <!--End fab-->
+    <div id="group">
+      <ion-avatar class="mx-auto menu-avatar mt-2 mb-2" slot="start">
+        <ion-img [src]="image" [hidden]="!image"></ion-img>
+        <ion-fab-button (click)="selectImage()" color="danger" size="small" class="ml-auto fabutton">
+          <ion-icon name="pencil"></ion-icon>
+        </ion-fab-button>
+      </ion-avatar>
+      <div class="pb-4"></div>
+
+      <ion-item lines="full">
+        <ion-icon color="primary" slot="start" name="person" size="large"></ion-icon>
+        <ion-text color="medium"><strong>{{data?.displayName}}</strong></ion-text>
+        <ion-fab-button slot="end" size="small" (click)="presentPopover()">
+          <ion-icon name="pencil"></ion-icon>
+        </ion-fab-button>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-icon color="primary" slot="start" name="call" size="large"></ion-icon>
+        <ion-text color="medium"><strong>{{data?.phoneNumber}}</strong></ion-text>
+        <ion-fab-button size="small" slot="end" color="danger" (click)="nav.navigateForward('phone-auth')">
+          <ion-icon name="shuffle"></ion-icon>
+        </ion-fab-button>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-icon color="primary" slot="start" name="mail" size="large"></ion-icon>
+        <ion-text color="medium"><strong>{{data?.email}}</strong></ion-text>
+      </ion-item>
+    </div>
+  </div>
+
+  <div class="font-italic font-weight-bolder mt-3 text-center text-muted">
+    Verified By
+    <ion-avatar class="mx-auto">
+      <img [src]="'assets/icon/'+data?.providerId.split('.')[0]+'.png'">
+    </ion-avatar>
+
+  </div>
+</ion-content>

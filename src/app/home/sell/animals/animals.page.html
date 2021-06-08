@@ -1,0 +1,15 @@
+<app-sell-header></app-sell-header>
+
+<ion-content>
+
+     <ion-select [(ngModel)]="input.type" mode="ios" class="border" [hidden]="hide_type" [placeholder]="this.item"
+          interface="action-sheet">
+          <ion-select-option *ngFor="let i of types[index]" [value]="i">
+               {{i}}
+          </ion-select-option>
+     </ion-select>
+     <ion-item class="item-height" lines="none" [hidden]="!errors[0]">
+          <ion-text [hidden]="!errors[0]" class="text-left text-danger">{{errors[0]}}</ion-text>
+     </ion-item>
+     <app-sell-last (getData)="gotData($event)" [hideCondition]='true'></app-sell-last>
+</ion-content>

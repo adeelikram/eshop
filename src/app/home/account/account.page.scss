@@ -1,0 +1,44 @@
+.w-35 {
+  width: 35%;
+}
+
+
+@keyframes bottom{ from{height:0rem} to{height:6rem} }
+
+@keyframes top{ from{height:6rem} to{height:0rem} }
+
+#options{
+  height:0rem;
+  position: relative;
+}
+
+#group{
+  background-color:rgb(12, 156, 204) ;
+}
+
+
+
+#null{
+  --min-height: 10rem !important;
+}
+
+//if user is not logged in
+.content-2{
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+
+.login-btn{
+  margin-top: 45%;
+  margin-left: 37%; 
+}
+.menu-avatar{
+   width: 8rem;
+   height: 8rem;
+}
+
+
+
+
+

@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Upload Photos</ion-title>
+    <ion-button slot="end" size='default' shape="outline" (click)="submitData()" [disabled]="images.length<1"
+      expand="block">
+      Publish Ad
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-item [hidden]="images.length==0 || images.length==3" lines="none">
+  <ion-button size="default" slot="end" (click)="takePhoto()">select More</ion-button>
+</ion-item>
+  <div *ngFor="let i of images" [hidden]="!i">
+    <ion-card color="info" class="w-50 mx-auto">
+      <ion-card-content color="primary" class="ion-no-margin">
+        <div class="my-container">
+        <ion-img class="border rounded bg-secondary" [src]="i"></ion-img>
+        <div class="preview" >
+            <ion-buttons>
+            <ion-icon class="mx-1 bg-white rounded" color="dark" (click)="preview(i)" size="large"   name="eye"></ion-icon>
+            <ion-icon class="mx-1 bg-white rounded" color="dark" (click)="reduceArray(i)" size="large" name="trash">
+            </ion-icon>
+          </ion-buttons>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+<div class="h-100 {{(!images.length)?'d-flex':'d-none'}} align-items-center">
+  <div class="my-border mx-auto w-50 " (click)="takePhoto()">
+    <ion-icon class="d-block mx-auto mt-5 icon-img" size="large" name="image"></ion-icon>
+    <ion-text class="d-block text-center font-italic mb-5">Click to Select Photos</ion-text>
+  </div>
+</div>
+
+</ion-content>

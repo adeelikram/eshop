@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "eshp00": {
+      "hosting": {
+        "app": [
+          "eshp00"
+        ]
+      }
+    }
+  }
+}

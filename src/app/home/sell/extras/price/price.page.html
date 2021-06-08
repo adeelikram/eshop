@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar class="toolbar-color">
+    <ion-icon color="light" slot="start" size="large" name="arrow-back" (click)="nav.pop()"></ion-icon>
+    <ion-title color="light">Set Price</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item lines="full" class="mt-5">
+    <ion-label position='floating'>Price</ion-label>
+    <ion-input #input type="number"></ion-input>
+  </ion-item>
+  <ion-text class="text-danger text-left ml-2">{{error}}</ion-text>
+  <footer class="footer">
+    <ion-button class="mt-5" color="primary" (click)="onClick(input.value)" expand="block" fill="solid" shape="round">
+      Next
+    </ion-button>
+  </footer>
+</ion-content>

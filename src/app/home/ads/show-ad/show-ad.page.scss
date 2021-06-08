@@ -1,0 +1,63 @@
+.slides-top {
+  height: 60%;
+}
+
+.slides-top ion-slide .arrow-back {
+  position: absolute;
+  left: 0;
+}
+
+.slides-top ion-slide .arrow-forward {
+  position: absolute;
+  right: 0;
+}
+
+.over-slide {
+  z-index: 1 !important;
+  position: absolute;
+  bottom: 0;
+}
+
+.map-height {
+  --min-height: auto;
+}
+
+.map {
+  width: 90%;
+  height: 35%;
+}
+
+.bottom {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.h-10 {
+  height: 10%;
+}
+.z-index {
+  z-index: 1;
+}
+.bg-whatsapp {
+  --background: #25d366;
+}
+
+.bg-call {
+  --background: #ed2476;
+}
+.bg-sms {
+  --background: #218aff;
+}
+ion-tab-button {
+  --ripple-color: blue;
+}
+.line-height {
+  line-height: 100%;
+}
+.mt {
+  margin-top: -5px;
+}
+.slide-img {
+  background-size: 100% 100%;
+}

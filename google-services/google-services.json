@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "246921552064",
+    "firebase_url": "https://eshp00.firebaseio.com",
+    "project_id": "eshp00",
+    "storage_bucket": "eshp00.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:246921552064:android:9c32b9215a40c4abe14d25",
+        "android_client_info": {
+          "package_name": "com.eshop.gx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "246921552064-b9o8q124ecm45tdoj7c2iaeoohjssmv1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASmTmugAnFVU8ZZANPRHNPam2PD-lQ6xk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "246921552064-b9o8q124ecm45tdoj7c2iaeoohjssmv1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "246921552064-obdlb24f8l1i0dadvsbo7g9bie9kngc7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.eshop.gx"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

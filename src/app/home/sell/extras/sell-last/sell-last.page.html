@@ -1,0 +1,49 @@
+<ion-content fullscreen>
+  <div [hidden]="hideCondition" class="mt-2">
+
+    <ion-text color="medium" class="ml-3 h6 condition">
+      Condition
+    </ion-text>
+    <div class="ml-5 mr-5 border rounded">
+      <ion-segment [(ngModel)]="input.condition">
+        <ion-segment-button *ngFor="let i of condition" [value]="i.first" [id]="i">
+          {{i.last}}
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+
+  </div>
+
+
+  <ion-item>
+    <ion-label position="floating">Title</ion-label>
+    <ion-input maxlength="70" [(ngModel)]="input.title" (ngModelChange)="modelChange($event,0)"></ion-input>
+  </ion-item>
+  <ion-text color="medium" class="ml-2"> Mention Key features of your item (Model,age,type)<span
+      class="float-right mr-1">
+      {{
+        lengths[0]
+      }}/70
+    </span>
+
+    <span class="text-danger d-block">{{title_error}}</span>
+  </ion-text>
+
+  <ion-item class="describe">
+    <ion-label position="floating">Describe</ion-label>
+    <ion-textarea maxlength="4096" autoGrow="true" [(ngModel)]="input.describe" (ngModelChange)="modelChange($event,1)">
+    </ion-textarea>
+  </ion-item>
+  <ion-text color="medium" class="ml-2"> Include condition ,features and reason for selling<span
+      class="float-right mr-1">
+      {{
+        lengths[1]
+      }}/4096
+    </span>
+    <span class="text-danger d-block">{{describe_error}}</span>
+  </ion-text>
+
+  <ion-button class="d-block w-75 h4 ali mx-auto" (click)="final()">
+    NEXT
+  </ion-button>
+</ion-content>

@@ -1,0 +1,43 @@
+<ion-menu side="start" type="overlay" contentId="main">
+  <ion-header>
+    <ion-toolbar class="toolbar-color">
+      <ion-avatar class="mx-auto menu-avatar mt-4 mb-4" size="large" color="light">
+        <ion-img [src]="img_source"></ion-img>
+      </ion-avatar>
+      <div id="google_translate_element"></div>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-item lines="none" class="mt-1" button *ngFor="let i of menu_src" [disabled]="i.title=='Version'">
+      <ion-icon size="large" color="dark" [name]="i.name" [src]="i.src" slot="start"></ion-icon>
+      <span class="lead text-dark font-weight-bold">{{i.title}}</span>
+    </ion-item>
+  </ion-content>
+</ion-menu>
+<ion-router-outlet id="main"></ion-router-outlet>
+
+
+<ion-tabs>
+  <ion-tab-bar [hidden]="hide_nav">
+    <ion-tab-button id="explore" #explore (click)="changeColor([explore,chats,sell,ads,account])" tab="explore"  routerLinkActive="router-link-active"  >
+      <ion-icon size="large" color="light" name="home"></ion-icon>
+      <ion-label color="light" color="light">Explore</ion-label>
+    </ion-tab-button>
+    <ion-tab-button id="chats" #chats (click)="changeColor([chats,explore,sell,ads,account])" tab="chats">
+      <ion-icon size="large" color="light" name="chatbox"></ion-icon>
+      <ion-label color="light">Chats</ion-label>
+    </ion-tab-button>
+    <ion-tab-button id="sell" #sell (click)="changeColor([sell,explore,chats,ads,account])" tab="sell">
+      <ion-icon size="large" color="light" name="cart"></ion-icon>
+      <ion-label color="light">Sell</ion-label>
+    </ion-tab-button>
+    <ion-tab-button id="ads" #ads (click)="changeColor([ads,explore,chats,sell,account])" tab="ads">
+      <ion-icon size="large" color="light" name="pricetag"></ion-icon>
+      <ion-label color="light">MY ADS</ion-label>
+    </ion-tab-button>
+    <ion-tab-button id="account" #account (click)="changeColor([account,explore,chats,sell,ads])" tab="account">
+      <ion-icon size="large" color="light" name="person"></ion-icon>
+      <ion-label color="light">Account</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

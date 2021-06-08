@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar class="toolbar-color">
+    <ion-icon color="light" size="large" name="arrow-back" slot="start" (click)="nav.pop()"></ion-icon>
+    <ion-title class="text-white">Categories</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h5 class="mt-3 text-center">Browse Categories</h5>
+  <ion-list>
+    <ion-item button detail *ngFor="let i of list"
+      (click)="moreCategories(i.title)">
+      <ion-icon [name]="i.icon || ''" [src]="i.src || ''" slot="start"></ion-icon>
+      {{i.title}}
+    </ion-item>
+  </ion-list>
+</ion-content>

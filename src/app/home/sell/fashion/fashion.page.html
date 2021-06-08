@@ -1,0 +1,20 @@
+<app-sell-header></app-sell-header>
+
+<ion-content>
+    <div [hidden]="!input.type">
+        <ion-item class="item-height" lines="none">
+            <span class="text-secondary">Type</span>
+        </ion-item>
+        <ion-item lines="none">
+            <ion-segment class="border rounded mr-5 ml-5" [(ngModel)]="input.type">
+                <ion-segment-button value="men">
+                    Men
+                </ion-segment-button>
+                <ion-segment-button value="Women">
+                    Women
+                </ion-segment-button>
+            </ion-segment>
+        </ion-item>
+    </div>
+    <app-sell-last (getData)="gotData($event)"></app-sell-last>
+</ion-content>

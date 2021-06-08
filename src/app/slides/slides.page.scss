@@ -1,0 +1,89 @@
+ion-slides {
+  height: 100%;
+}
+
+#slide-1 {
+  @media (max-width: 576px) {
+    background-image: url("../../assets/backgrounds/back1.jpg");
+    background-size: 100% 100%;
+  }
+  @media (min-width: 577px) {
+    background-color: rgb(12, 156, 204);
+  }
+}
+.slide-1-con {
+  --background: transparent;
+  &ion-item[class="mt-5"] {
+    --background: transparent;
+  }
+}
+
+.sun {
+  max-height: 12rem;
+  max-width: 6rem;
+}
+
+.con-1 {
+  max-width: 90%;
+  background-color: #eeeeee;
+  line-height: 20px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.transparent {
+  --background: transparent;
+}
+
+#slide-2 {
+  @media (max-width: 576px) {
+    background-size: 100% 100%;
+    background-image: url("../../assets/backgrounds/back2.jpg");
+  }
+  @media (min-width: 577px) {
+    background-color: rgb(12, 156, 204);
+  }
+}
+
+#slide-3 {
+  @media (max-width: 576px) {
+    background-size: 100% 100%;
+    background-image: url("../../assets/backgrounds/back3.jpg");
+  }
+  @media (min-width: 577px) {
+    background-color: rgb(12, 156, 204);
+  }
+}
+
+.form-input-cred {
+  border-radius: 20px;
+  border: 4px solid whitesmoke;
+  &:hover {
+    border-color: chartreuse !important;
+  }
+}
+
+.btn-props {
+  background-color: var(--ion-color-success);
+  border-radius: 20px;
+}
+
+ion-card-content {
+  background-color: var(--ion-color-primary);
+}
+
+.google {
+  --background: #fbbc00;
+}
+
+.facebook {
+  --background: #3c5a99;
+}
+
+.twitter {
+  --background: #1da1f2;
+}
+
+.vertical-center{
+  position: absolute;
+  top:40%
+}

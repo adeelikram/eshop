@@ -1,0 +1,233 @@
+
+
+                                        Paths
+
+
+
+
+
+animation.ts
+app-routing.module.ts
+app.component.html
+app.component.scss
+app.component.spec.ts
+app.component.ts
+app.module.ts
+variables.service.spec.ts
+variables.service.ts
+firebase_imports.ts
+categories
+        categories-routing.module.ts
+        categories.module.ts
+        categories.page.html
+        categories.page.scss
+        categories.page.spec.ts
+        categories.page.ts
+        data.list.ts
+chat
+        chat-routing.module.ts
+        chat.module.ts
+        chat.page.html
+        chat.page.scss
+        chat.page.spec.ts
+        chat.page.ts
+extras
+        price
+            price-routing.module.ts
+            price.module.ts
+            price.page.html
+            price.page.scss
+            price.page.spec.ts
+            price.page.ts
+        progress-bar
+            progress-bar-routing.module.ts
+            progress-bar.module.ts
+            progress-bar.page.html
+            progress-bar.page.scss
+            progress-bar.page.spec.ts
+            progress-bar.page.ts
+        sell-header
+            sell-header-routing.module.ts
+            sell-header.module.ts
+            sell-header.page.html
+            sell-header.page.scss
+            sell-header.page.spec.ts
+            sell-header.page.ts
+        sell-last
+            sell-last-routing.module.ts
+            sell-last.module.ts
+            sell-last.page.html
+            sell-last.page.scss
+            sell-last.page.spec.ts
+            sell-last.page.ts
+home
+    home-routing.module.ts
+    home.module.ts
+    home.page.html
+    home.page.scss
+    home.page.spec.ts
+    home.page.ts
+    home.sub.childs.ts    
+    account
+        account-routing.module.ts
+        account.module.ts
+        account.page.html
+        account.page.scss
+        account.page.spec.ts
+        account.page.ts
+    add-photos
+        add-photos-routing.module.ts
+        add-photos.module.ts
+        add-photos.page.html
+        add-photos.page.scss
+        add-photos.page.spec.ts
+        add-photos.page.ts
+    ads
+        ads-routing.module.ts
+        ads.module.ts
+        ads.page.html
+        ads.page.scss
+        ads.page.spec.ts
+        ads.page.ts
+        
+        show-ad
+            show-ad-routing.module.ts
+            show-ad.module.ts
+            show-ad.page.html
+            show-ad.page.scss
+            show-ad.page.spec.ts
+            show-ad.page.ts
+    chats
+        chats-routing.module.ts
+        chats.module.ts
+        chats.page.html
+        chats.page.scss
+        chats.page.spec.ts
+        chats.page.ts
+    expand-cate
+        data.list.ts
+        expand-cate-routing.module.ts
+        expand-cate.module.ts
+        expand-cate.page.html
+        expand-cate.page.scss
+        expand-cate.page.spec.ts
+        expand-cate.page.ts
+    explore
+        explore-routing.module.ts
+        explore.module.ts
+        explore.page.html
+        explore.page.scss
+        explore.page.spec.ts
+        explore.page.ts
+        
+    sell
+        sell-routing.module.ts
+        sell.module.ts
+        sell.page.html
+        sell.page.scss
+        sell.page.spec.ts
+        sell.page.ts
+        animals
+            animals-routing.module.ts
+            animals.module.ts
+            animals.page.html
+            animals.page.scss
+            animals.page.spec.ts
+            animals.page.ts
+            data.list.ts
+        bikes
+            bikes-routing.module.ts
+            bikes.module.ts
+            bikes.page.html
+            bikes.page.scss
+            bikes.page.spec.ts
+            bikes.page.ts
+        books
+            books-routing.module.ts
+            books.module.ts
+            books.page.html
+            books.page.scss
+            books.page.spec.ts
+            books.page.ts
+            data.list.ts
+        electronics
+            data.list.ts
+            electronics-routing.module.ts
+            electronics.module.ts
+            electronics.page.html
+            electronics.page.scss
+            electronics.page.spec.ts
+            electronics.page.ts
+        fashion
+            fashion-routing.module.ts
+            fashion.module.ts
+            fashion.page.html
+            fashion.page.scss
+            fashion.page.spec.ts
+            fashion.page.ts
+        food
+            food-routing.module.ts
+            food.module.ts
+            food.page.html
+            food.page.scss
+            food.page.spec.ts
+            food.page.ts
+        furniture
+            furniture-routing.module.ts
+            furniture.module.ts
+            furniture.page.html
+            furniture.page.scss
+            furniture.page.spec.ts
+            furniture.page.ts
+        house
+            data.list.ts
+            house-routing.module.ts
+            house.module.ts
+            house.page.html
+            house.page.scss
+            house.page.spec.ts
+            house.page.ts
+        kids
+            kids-routing.module.ts
+            kids.module.ts
+            kids.page.html
+            kids.page.scss
+            kids.page.spec.ts
+            kids.page.ts
+        mobile
+            mobile-routing.module.ts
+            mobile.module.ts
+            mobile.page.html
+            mobile.page.scss
+            mobile.page.spec.ts
+            mobile.page.ts
+        
+        vehicles
+            data.list.ts
+            vehicles-routing.module.ts
+            vehicles.module.ts
+            vehicles.page.html
+            vehicles.page.scss
+            vehicles.page.spec.ts
+            vehicles.page.ts
+location
+    location-routing.module.ts
+    location.module.ts
+    location.page.html
+    location.page.scss
+    location.page.spec.ts
+    location.page.ts
+phone-auth
+    phone-auth-routing.module.ts
+    phone-auth.module.ts
+    phone-auth.page.html
+    phone-auth.page.scss
+    phone-auth.page.spec.ts
+    phone-auth.page.ts
+slides
+    slides-routing.module.ts
+    slides.module.ts
+    slides.page.html
+    slides.page.scss
+    slides.page.spec.ts
+    slides.page.ts

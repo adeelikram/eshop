@@ -1,0 +1,72 @@
+<ion-header mode="ios">
+  <ion-toolbar class="toolbar-color">
+    <ion-buttons>
+      <ion-menu-button color="light" slot="start"></ion-menu-button>
+      <ion-title color="light" class="h5 title">
+        ADS
+      </ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-segment mode="md" [(ngModel)]="segment" (ionChange)="changeSlide()">
+    <ion-segment-button value="1">
+      <ion-label>My Ads</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="2">
+      <ion-label>Favorite</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content>
+  <ion-slides #slides (ionSlideDidChange)="slideChanged()">
+    <ion-slide>
+      <ng-container
+        *ngTemplateOutlet="template;context:{tem_class:class[0],tem_hideSpinner:hideSpinner[0],tem_data:data[0],tem_icon:'trash',tem_color:'danger',tem_slide:'ads',tem_favCond:false}">
+      </ng-container>
+    </ion-slide>
+    <ion-slide>
+      <ng-container
+        *ngTemplateOutlet="template;context:{tem_class:class[1],tem_hideSpinner:hideSpinner[1],tem_data:data[1],tem_icon:'heart',tem_color:'secondary',tem_slide:'fav',tem_favCond:true}">
+      </ng-container>
+    </ion-slide>
+  </ion-slides>
+
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" pullFactor="0.8" pullMin="60" pullMax="120">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+</ion-content>
+
+<!-- template used in both tabs -->
+<ng-template #template let-class="tem_class" let-hideSpinner="tem_hideSpinner" let-data="tem_data" let-icon="tem_icon"
+  let-color="tem_color" let-slideid="tem_slide" let-hideIfFav="tem_favCond">
+  <ion-content>
+    <ion-text [class]="class" color="secondary">
+      <h3>No ads uploaded yet!</h3>
+    </ion-text>
+    <ion-spinner size="large" class="mt-5" [hidden]="hideSpinner"></ion-spinner>
+    <ion-list>
+      <ion-item button *ngFor="let i of data" (click)="passDataToShowAd(i,slideid,$event)" [hidden]="!data" lines="none"
+        class="mt-2 mx-auto border rounded">
+        <ion-thumbnail slot="start" class="thumbnail-margin" size="large">
+          <ion-img size="large" class="rounded" [src]="i.data().images[0]">
+          </ion-img>
+        </ion-thumbnail>
+        <ion-label class="ml-3 mr-0">
+          <h2 color="primary">{{i.data().data.title}}</h2>
+          <p>RS {{i.data().data.price}}</p>
+          <ion-buttons class="text-small text-secondary">
+            {{getDate(i.data().date)}}
+            <ion-icon [hidden]="hideIfFav" class="ml-1" color="dark" name="eye"></ion-icon>
+            <span [hidden]="hideIfFav">:{{i.data().views}}</span>
+            <ion-icon [hidden]="hideIfFav" class="ml-1" color="dark" name="heart"></ion-icon>
+            <span [hidden]="hideIfFav"> :{{i.data().likes}}</span>
+          </ion-buttons>
+        </ion-label>
+        <ion-button [color]="color" slot="end" [id]="data.indexOf(i)" (click)="trash($event)">
+          <ion-icon [name]="icon"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ng-template>
