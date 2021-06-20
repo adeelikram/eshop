@@ -1,5 +1,6 @@
 .slides-top {
   height: 60%;
+  --bullet-background-active: var(--ion-color-light);
 }
 
 .slides-top ion-slide .arrow-back {
@@ -32,12 +33,19 @@
   bottom: 0;
   right: 0;
   left: 0;
+  background: transparent;
 }
 .h-10 {
   height: 10%;
 }
 .z-index {
   z-index: 1;
+}
+.tab-transparent {
+  --background: transparent;
+}
+.tab-bar {
+  border: none;
 }
 .bg-whatsapp {
   --background: #25d366;
@@ -59,5 +67,11 @@ ion-tab-button {
   margin-top: -5px;
 }
 .slide-img {
-  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.profile-img{
+  height:4rem;
+  width: 4rem;
 }

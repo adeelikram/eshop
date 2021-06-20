@@ -34,4 +34,13 @@
   .item-height{
     --min-height:5px !important
   }
+  .swiper-pagination-bullet-active {
+    transform: scale(2) !important;
+  }
+  .swiper-pagination-bullets{
+    width: auto;
+    display: block;
+    margin-left: 42vw;
+    background-color: var(--ion-color-dark);
+  }
 }

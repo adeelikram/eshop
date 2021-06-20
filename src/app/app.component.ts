@@ -4,8 +4,9 @@ import { Component, NgZone, ViewChild } from '@angular/core';
 import { Platform, IonRouterOutlet, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { ImageInLocalStorageService } from "./image-in-local-storage.service"
-import { FilesystemDirectory, FilesystemEncoding, Plugins } from "@capacitor/core"
+
+import { Plugins } from "@capacitor/core"
+
 
 
 
@@ -29,10 +30,10 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private nav: NavController,
-    private zone: NgZone
+    private zone: NgZone,
+    
   ) {
-    this.initializeApp();
-
+    this.initializeApp()
   }
 
   initializeApp() {

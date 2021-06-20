@@ -1,0 +1,32 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    background-color: aliceblue;
+}
+.btn-send {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 5px;
+}
+.msg {
+    max-width: 70vw !important;
+    margin: auto;
+}
+.profile {
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+}
+.icon {
+    font-size: 2rem;
+    margin-bottom: -5px;
+}
+.top-profile {
+    height: 4rem;
+    width: 4rem;
+}
+.date {
+    font-size: 12px;
+    font-weight: bold;
+    float: right;
+}

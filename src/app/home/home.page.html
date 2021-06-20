@@ -19,24 +19,24 @@
 
 <ion-tabs>
   <ion-tab-bar [hidden]="hide_nav">
-    <ion-tab-button id="explore" #explore (click)="changeColor([explore,chats,sell,ads,account])" tab="explore"  routerLinkActive="router-link-active"  >
-      <ion-icon size="large" color="light" name="home"></ion-icon>
+    <ion-tab-button #explore tab="explore">
+      <ion-icon style="font-size: 33px;" color="light" name="home-outline"></ion-icon>
       <ion-label color="light" color="light">Explore</ion-label>
     </ion-tab-button>
-    <ion-tab-button id="chats" #chats (click)="changeColor([chats,explore,sell,ads,account])" tab="chats">
-      <ion-icon size="large" color="light" name="chatbox"></ion-icon>
+    <ion-tab-button #chats tab="chats">
+      <ion-icon style="font-size: 33px;" color="light" name="chatbox-outline"></ion-icon>
       <ion-label color="light">Chats</ion-label>
     </ion-tab-button>
-    <ion-tab-button id="sell" #sell (click)="changeColor([sell,explore,chats,ads,account])" tab="sell">
-      <ion-icon size="large" color="light" name="cart"></ion-icon>
+    <ion-tab-button #sell tab="sell">
+      <ion-icon style="font-size: 33px;" color="light" name="cart-outline"></ion-icon>
       <ion-label color="light">Sell</ion-label>
     </ion-tab-button>
-    <ion-tab-button id="ads" #ads (click)="changeColor([ads,explore,chats,sell,account])" tab="ads">
-      <ion-icon size="large" color="light" name="pricetag"></ion-icon>
+    <ion-tab-button #ads tab="ads">
+      <ion-icon style="font-size: 33px;" color="light" name="pricetag-outline"></ion-icon>
       <ion-label color="light">MY ADS</ion-label>
     </ion-tab-button>
-    <ion-tab-button id="account" #account (click)="changeColor([account,explore,chats,sell,ads])" tab="account">
-      <ion-icon size="large" color="light" name="person"></ion-icon>
+    <ion-tab-button #account tab="account">
+      <ion-icon style="font-size: 33px;" color="light" name="person-outline"></ion-icon>
       <ion-label color="light">Account</ion-label>
     </ion-tab-button>
   </ion-tab-bar>

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
-import { FilesystemDirectory, FilesystemEncoding, Plugins, } from '@capacitor/core';
+import { Plugins, } from '@capacitor/core';
 import { NavController } from '@ionic/angular';
 import { HomeTabsService } from "../../hide-home-tabs.service"
 import { ImageInLocalStorageService } from "../../../image-in-local-storage.service"
-var { sms, call, Toast, Storage, Filesystem } = Plugins;
+var { sms, call, Toast } = Plugins;
 declare var google
 @Component({
   selector: 'app-show-ad',
@@ -54,15 +54,6 @@ export class ShowAdPage {
     this.fav_icon = (temp[0]) ? "heart" : "heart-outline"
   }
 
-  slideChange(n) {
-    if (n == 1) {
-      document.querySelectorAll("ion-fab-button").forEach(el => el.style.display = 'none')
-    }
-    else {
-      document.querySelectorAll("ion-fab-button").forEach(el => el.style.display = 'flex')
-    }
-  }
-
 
   async ngAfterViewInit() {
     if (/ads/.test(this.from)) {
@@ -81,7 +72,7 @@ export class ShowAdPage {
     var collectionRef = this.db.firestore.collection("eshop/" + this.user + "/favorites")
     if (/heart-outline/.test(this.fav_icon)) {
       await collectionRef.add({
-        ...this.parent, ...this.product, id: this.id
+        email: this.parent["email"], ...this.product, id: this.id
       })
       this.fav_icon = "heart"
       await Toast.show({ text: "Added to Favorites", position: "center" })
@@ -129,8 +120,8 @@ export class ShowAdPage {
 
   async chat() {
     var email = JSON.parse((await Plugins.Storage.get({ key: 'user_data_eshop' })).value)['email']
-    if (this.parent.email == email) alert("Same user")
-    else this.nav.navigateForward(['/chat', { data: JSON.stringify(this.parent) }])
+    if (this.parent.email == email) alert("You created this post.\nSo you can't chat with yourself")
+    else this.nav.navigateForward(['home/chats/do-chat', { ...this.parent }])
   }
 
   makeCall() {

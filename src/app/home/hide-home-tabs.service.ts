@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { MenuController } from '@ionic/angular';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +9,7 @@ export class HomeTabsService {
   event=new Event("hometabs")
   
   constructor(private menuController: MenuController) { }
-  
+  // menu will also be disbaled in sub pages 
   hideHomeTabs() {
     this.event["value"] = true
     document.dispatchEvent(this.event)

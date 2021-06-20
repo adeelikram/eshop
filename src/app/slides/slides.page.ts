@@ -4,13 +4,13 @@ import { IonSlides as is, PopoverController, Platform, AlertController } from '@
 
 
 import { NavController } from '@ionic/angular';
-import { Plugins, FilesystemDirectory, FilesystemEncoding } from '@capacitor/core';
+import { Plugins } from '@capacitor/core';
 import { ProgressBarPage } from "./progress-bar/progress-bar.page"
 import { ActivatedRoute } from '@angular/router';
 
 import { cfaSignIn, cfaSignOut } from "capacitor-firebase-auth"
 
-var { Filesystem, Storage, FCMPlugin } = Plugins
+var { Storage } = Plugins
 
 @Component({
   selector: 'app-slides',
@@ -44,10 +44,13 @@ export class SlidesPage {
     })
   }
 
+  delProperty(user) {
+    ["uid", "photoURL", "phoneNumber"].forEach(e => delete user.providerData[0][e])
+  }
   async google() {
     try {
       cfaSignIn("google.com").subscribe(user => {
-        delete user.providerData[0]["uid"]
+        this.delProperty(user)
         this.notificationTokenNative(user.providerData[0])
       })
 
@@ -58,7 +61,7 @@ export class SlidesPage {
   async facebook() {
     try {
       cfaSignIn("facebook.com").subscribe(user => {
-        delete user.providerData[0]["uid"]
+        this.delProperty(user)
         this.notificationTokenNative(user.providerData[0])
       })
 
@@ -69,7 +72,7 @@ export class SlidesPage {
   async twitter() {
     try {
       cfaSignIn("twitter.com").subscribe(user => {
-        delete user.providerData[0]["uid"]
+        this.delProperty(user)
         this.notificationTokenNative(user.providerData[0])
       })
 
@@ -101,15 +104,16 @@ export class SlidesPage {
     var data = { ...user }
     Object.assign(data, { token: token })
     var { email } = data;
-    await this.db.collection("eshop").doc(email).set(data)
-    await Storage.set({ key: "user_data_eshop", value: JSON.stringify(data) })
+    var resp = await this.db.firestore.collection("eshop").doc(email).set(data, { merge: true })
+    resp = (await this.db.firestore.collection("eshop").doc(email).get()).data() as any
+    await Storage.set({ key: "user_data_eshop", value: JSON.stringify(resp) })
     await Storage.set({ key: "user_of_eshop", value: email })
     try {
       await this.popover.dismiss()
       localStorage.setItem("viewed", "true")
       //** */
       if (this.sell) this.nav.navigateForward("home/sell", { replaceUrl: true })
-      else this.nav.navigateForward("home")
+      else this.nav.navigateForward(["home"], { replaceUrl: true })
       /** */
     } catch (error) {
       (async () => {

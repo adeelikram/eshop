@@ -3,6 +3,7 @@ import { AngularFireAuthModule } from "@angular/fire/auth"
 import { AngularFirestoreModule } from "@angular/fire/firestore"
 import { AngularFireStorageModule } from "@angular/fire/storage";
 import { AngularFireMessagingModule } from "@angular/fire/messaging"
+import { AngularFireDatabaseModule } from "@angular/fire/database";
 export var firebaseConfig = {
     apiKey: "AIzaSyDfVjAamPJLDio8uaH_6eiojZNBFgJrf_k",
     authDomain: "eshp00.firebaseapp.com",
@@ -18,5 +19,6 @@ export var firebaseArray = [
     AngularFireAuthModule,
     AngularFirestoreModule.enablePersistence(),
     AngularFireStorageModule,
-    AngularFireMessagingModule
+    AngularFireMessagingModule,
+    AngularFireDatabaseModule
 ]

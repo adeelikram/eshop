@@ -1,12 +1,31 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>chats</ion-title>
+  <ion-toolbar class="toolbar-color">
+    <ion-buttons>
+      <ion-menu-button color="light" slot="start"></ion-menu-button>
+      <ion-title color="light" class="h3 m-auto">
+        Chats
+      </ion-title>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-    
+<ion-content id="local">
+  <ion-spinner class="spinner" [hidden]="hideSpin"></ion-spinner> 
+  <ion-list color="light">
+    <ion-item lines="full" button *ngFor="let el of material" (click)="doChats(el)">
+      <ion-avatar class="img-circle border-5" slot="start">
+        <img [src]="el.photoURL" />
+      </ion-avatar>
+      <ion-label>
+        <h1 class="font-weight-bolder font-italic">{{el.displayName}}</h1>
+        <h5 class="font-weight-bolder font-italic msg">{{el.msg}}</h5>
+        <div class="d-block float-right">{{convertDate(el.date)}}</div>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" pullFactor="0.8" pullMin="60" pullMax="120">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+
 </ion-content>

@@ -38,8 +38,7 @@ const routes: Routes = [
   {
     path: 'expand-cate',
     loadChildren: () => import('./expand-cate/expand-cate.module').then(m => m.ExpandCatePageModule)
-  },
-  
+  }
 ];
 
 @NgModule({

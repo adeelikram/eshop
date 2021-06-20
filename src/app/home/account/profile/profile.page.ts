@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController, NavController, PopoverController } from "@ionic/angular"
 import { HomeTabsService } from '../../hide-home-tabs.service';
-import { CameraResultType, FilesystemDirectory, Plugins } from "@capacitor/core"
+import { CameraResultType, Plugins } from "@capacitor/core"
 import { NameModelPage } from './name-model/name-model.page';
 import { ImageInLocalStorageService } from '../../../image-in-local-storage.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
-var { Storage, Filesystem, Camera } = Plugins
+var { Storage, Camera } = Plugins
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -78,7 +78,6 @@ export class ProfilePage implements OnInit {
   }
   async selectImage() {
     var img = await Camera.getPhoto({ resultType: CameraResultType.DataUrl })
-    await Filesystem.writeFile({ path: "profile.txt", directory: FilesystemDirectory.Data, data: img.dataUrl }).catch(alert)
     var event = new Event("profileUploaded")
     event["image"] = img.dataUrl
     document.dispatchEvent(event);

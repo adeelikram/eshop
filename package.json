@@ -43,6 +43,7 @@
     "firebase": "^8.2.7",
     "firebaseui": "^4.7.1",
     "rxjs": "~6.5.5",
+    "socket.io-client": "^4.1.2",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
   },

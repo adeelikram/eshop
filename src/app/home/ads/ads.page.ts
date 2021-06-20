@@ -11,9 +11,11 @@ import { HomeTabsService } from '../hide-home-tabs.service';
   styleUrls: ['./ads.page.scss'],
 })
 export class AdsPage {
+  // we are using ng templates in ion slides 
   data = []
   hideSpinner = [false, false]
   class = ['d-none', 'd-none']
+  // for this purpose data hideSpinner,and class are used are array length 2
   segment = '1'
   @ViewChild("slides") slides: IonSlides
 
@@ -28,7 +30,7 @@ export class AdsPage {
     document.addEventListener("addUploaded", (event) => {
       this.data = []
       this.hideSpinner = [false, false]
-      this.class =['d-none', 'd-none']
+      this.class = ['d-none', 'd-none']
       this.segment = '1'
       this.ngOnInit()
     })
@@ -130,8 +132,8 @@ export class AdsPage {
     }
     else {
       var temp = i.data()
-      var { displayName, photoURL, phoneNumber,email } = temp
-      parent = { displayName, photoURL, phoneNumber,email };
+      var { displayName, photoURL, phoneNumber, email } = (await this.db.firestore.doc("eshop/" + temp["email"]).get()).data()
+      parent = { displayName, photoURL, phoneNumber, email };
       ["displayName", "photoURL", "phoneNumber", "token"].forEach(el => delete temp[el])
       product = temp
     }

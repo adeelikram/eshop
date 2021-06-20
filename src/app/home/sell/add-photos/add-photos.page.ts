@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Plugins }  from '@capacitor/core';
+import { Plugins } from '@capacitor/core';
 import { LoadingController, NavController } from "@ionic/angular"
 import { AngularFirestore } from "@angular/fire/firestore"
 import { AngularFireStorage } from "@angular/fire/storage"
@@ -16,7 +16,7 @@ const { Storage } = Plugins
 })
 export class AddPhotosPage implements OnInit {
   images = []
-  img_paths=[]
+  img_paths = []
   params = { product: "", item: "", data: "" }
   refs = []  //references to images
 
@@ -26,10 +26,10 @@ export class AddPhotosPage implements OnInit {
     private storage: AngularFireStorage,
     private active: ActivatedRoute,
     private nav: NavController,
-    private picker:ImagePicker,
-    private base64:Base64,
-    private photo:PhotoViewer,
-    private homeTabs:HomeTabsService
+    private picker: ImagePicker,
+    private base64: Base64,
+    private photo: PhotoViewer,
+    private homeTabs: HomeTabsService
   ) {
     this.active.params.subscribe(params => {
       var { product, item, data } = params
@@ -53,7 +53,6 @@ export class AddPhotosPage implements OnInit {
     .catch(err=>{
       alert(err)
     })
-    
   }
 
   preview(img) {

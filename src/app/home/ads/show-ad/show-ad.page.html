@@ -5,15 +5,9 @@
 </ion-header>
 
 <ion-content>
-  <ion-slides class="slides-top" pager="ios" #slides (ionSlideNextStart)="slideChange(1)"
-    (ionSlideNextEnd)="slideChange(2)" (ionSlidePrevStart)="slideChange(1)" (ionSlidePrevEnd)="slideChange(2)">
-    <ion-slide *ngFor="let v of product.images" [style.backgroundImage]="'url('+v+') !important'" class="slide-img">
-      <ion-fab-button color="light" class="arrow-back" (click)="slides.slidePrev()">
-        <ion-icon name="arrow-back"></ion-icon>
-      </ion-fab-button>
-      <ion-fab-button color="light" class="arrow-forward" (click)="slides.slideNext()">
-        <ion-icon name="arrow-forward"></ion-icon>
-      </ion-fab-button>
+  <ion-slides class="slides-top" pager="ios" #slides>
+    <ion-slide *ngFor="let v of product.images" role="img" aria-label="Ad has been Removed" [style.backgroundImage]="'url('+v+') !important'" class="slide-img">
+      <!--Size of bullet has been set at global.scss-->
     </ion-slide>
   </ion-slides>
   <ion-grid class="border-bottom" fixed>
@@ -51,27 +45,37 @@
   </ion-grid>
 
   <ion-item lines="full" button>
-    <ion-avatar slot="start">
-      <img [src]="userP.image" />
+    <ion-avatar class="profile-img" slot="start">
+      <ion-img [src]="userP.image"></ion-img>
     </ion-avatar>
     <ion-label>
-      {{parent['displayName']}}
+      <h1>{{parent['displayName']}}</h1>
     </ion-label>
   </ion-item>
 
   <div class="mt-2 mx-auto map mb-2 rounded border border-primary" id="map"></div>
   <div class="h-10"></div>
   <footer class="bottom z-index" id="footer">
-    <ion-tab-bar>
-      <ion-tab-button class="bg-whatsapp" (click)="chat()">
-        <ion-icon size="large" color="light" name="chatbubble"></ion-icon>
+    <ion-tab-bar class="tab-transparent tab-bar">
+
+      <ion-tab-button class="tab-transparent" (click)="chat()">
+        <ion-fab-button class="bg-whatsapp">
+          <ion-icon size="large" color="light" name="chatbubble"></ion-icon>
+        </ion-fab-button>
       </ion-tab-button>
-      <ion-tab-button (click)="makeCall()" class="bg-call">
-        <ion-icon size="large" color="light" name="call"></ion-icon>
+
+      <ion-tab-button (click)="makeCall()" class="tab-transparent">
+        <ion-fab-button class="bg-call">
+          <ion-icon size="large" color="light" name="call"></ion-icon>
+        </ion-fab-button>
       </ion-tab-button>
-      <ion-tab-button (click)="sendSMS()" class="bg-sms">
-        <ion-icon size="large" color="light" name="chatbox"></ion-icon>
+
+      <ion-tab-button (click)="sendSMS()" class="tab-transparent">
+        <ion-fab-button class="bg-sms">
+          <ion-icon size="large" color="light" name="chatbox"></ion-icon>
+        </ion-fab-button>
       </ion-tab-button>
+
     </ion-tab-bar>
   </footer>
 </ion-content>
