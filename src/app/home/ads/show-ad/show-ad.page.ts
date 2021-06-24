@@ -5,6 +5,8 @@ import { Plugins, } from '@capacitor/core';
 import { NavController } from '@ionic/angular';
 import { HomeTabsService } from "../../hide-home-tabs.service"
 import { ImageInLocalStorageService } from "../../../image-in-local-storage.service"
+
+import firebase from 'firebase';
 var { sms, call, Toast } = Plugins;
 declare var google
 @Component({
@@ -29,19 +31,19 @@ export class ShowAdPage {
     private nav: NavController,
     private imgService: ImageInLocalStorageService
   ) {
-    this.active.params.subscribe(data => {
-      var { parentData, productData } = JSON.parse(data["data"])
-      this.userP.title = productData.data.title
-      this.userP.describe = productData.data.describe
-      this.parent = parentData
-      this.product = productData
-      var prod = productData["product"]
-      var item = productData["item"]
-      this.id = data["id"]
-      this.forUserView = { ...this.product.data, product: prod, item: item }
-      this.from = data["from"];
-      ["title", "describe",].forEach(el => delete this.forUserView[el])
-    })
+
+    var { parentData, productData } = JSON.parse(this.active.snapshot.paramMap.get("data"))
+    this.userP.title = productData.data.title
+    this.userP.describe = productData.data.describe
+    this.parent = parentData
+    this.product = productData
+    var prod = productData["product"]
+    var item = productData["item"]
+    this.id = this.active.snapshot.paramMap.get("id")
+    this.forUserView = { ...this.product.data, product: prod, item: item }
+    this.from = this.active.snapshot.paramMap.get("from");
+    ["title", "describe",].forEach(el => delete this.forUserView[el])
+
   }
 
   ionViewWillLeave() {
@@ -50,8 +52,11 @@ export class ShowAdPage {
 
   async ngOnInit() {
     this.user = (await Plugins.Storage.get({ key: 'user_of_eshop' })).value
-    var temp = (await this.db.firestore.collection("eshop/" + this.user + "/favorites").where("id", "==", this.id).get()).docs
+    var temp = (this.user) ? (await this.db.firestore.collection("eshop/" + this.user + "/favorites").where("id", "==", this.id).get()).docs : [null]
     this.fav_icon = (temp[0]) ? "heart" : "heart-outline"
+    if (this.parent["email"] != this.user) {
+      await this.db.firestore.collection("eshop/" + this.parent["email"] + "/eshop").doc(this.id).update({ views: firebase.firestore.FieldValue.increment(1) })
+    }
   }
 
 
@@ -62,24 +67,30 @@ export class ShowAdPage {
     }
     else {
       this.userP.image = this.parent["photoURL"] ? this.parent["photoURL"] : "assets/person-circle.svg"
-      this.hideFav = true
+      this.hideFav = (this.from == "explore") ? false : true
       document.querySelector('#footer')['style'].display = 'block'
     }
     this.map()
   }
 
   async Fav() {
+    if (!this.user) {
+      alert("You have to SignIn first in order to save in your favorites gallery.")
+      return
+    }
     var collectionRef = this.db.firestore.collection("eshop/" + this.user + "/favorites")
     if (/heart-outline/.test(this.fav_icon)) {
       await collectionRef.add({
         email: this.parent["email"], ...this.product, id: this.id
       })
       this.fav_icon = "heart"
+      await this.db.firestore.collection("eshop/" + this.parent["email"] + "/eshop").doc(this.id).update({ likes: firebase.firestore.FieldValue.increment(1) })
       await Toast.show({ text: "Added to Favorites", position: "center" })
     }
     else {
       var temp = (await collectionRef.where("id", "==", "" + this.id).get()).docs
       await temp[0].ref.delete()
+      await this.db.firestore.collection("eshop/" + this.parent["email"] + "/eshop").doc(this.id).update({ likes: firebase.firestore.FieldValue.increment(-1) })
       await Toast.show({ text: "Removed from Favorites", position: "center" })
       this.fav_icon = "heart-outline"
     }
@@ -119,8 +130,7 @@ export class ShowAdPage {
   }
 
   async chat() {
-    var email = JSON.parse((await Plugins.Storage.get({ key: 'user_data_eshop' })).value)['email']
-    if (this.parent.email == email) alert("You created this post.\nSo you can't chat with yourself")
+    if (this.parent.email == this.user) alert("You created this post.\nSo you can't chat with yourself")
     else this.nav.navigateForward(['home/chats/do-chat', { ...this.parent }])
   }
 

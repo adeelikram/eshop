@@ -45,13 +45,9 @@ export class ExpandCatePage {
   goNext(product_item) {
     if (this.from.includes("sell")) {
       this.nav.navigateForward(["home/sell/" + this.product, { item: product_item }])
-
     }
     else {
-      /*
-      code for explore search
-      */
-
+      this.nav.navigateBack(["home/explore", { product: this.product, item: product_item }])
     }
   }
 

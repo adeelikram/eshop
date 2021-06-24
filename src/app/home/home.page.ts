@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { ImageInLocalStorageService } from '../image-in-local-storage.service';
 import { filter } from 'rxjs/operators';
+import { Plugins } from "@capacitor/core"
+var { Storage, Share } = Plugins
 declare var google
 @Component({
   selector: 'app-home',
@@ -19,23 +21,18 @@ export class HomePage {
   @ViewChild("ads") ads
   @ViewChild("account") account
   array = []
+
   menu_src = [
     {
-      src: "assets/icon/shopping_cart.svg",
-      title: "Sell & Purchase"
-    },
-    {
-      src: "assets/icon/feedback.svg",
-      title: "FeedBack"
-    },
-    {
       src: "assets/icon/contact.svg",
-      title: "Contact Us"
+      title: "Contact Us",
+      href: "mailto:rahil.ikram67@gmail.com"
     },
 
     {
       name: "information-circle-outline",
-      title: "About"
+      title: "About",
+      link: "/about"
     },
     {
       name: "share-social-outline",
@@ -46,7 +43,7 @@ export class HomePage {
       title: "Version"
     },
   ];
-
+  person = { displayName: "", email: "" }
   constructor(
     private router: Router,
     private imgService: ImageInLocalStorageService
@@ -62,6 +59,9 @@ export class HomePage {
 
   async ngOnInit() {
     this.setImage()
+    var data = JSON.parse((await Storage.get({ key: "user_data_eshop" })).value)
+    this.person.displayName = data["displayName"]
+    this.person.email = data["email"]
   }
 
   setCurrentTab() {
@@ -111,8 +111,24 @@ export class HomePage {
       new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL }, 'google_translate_element');
     }, 3000)
   }
+
+  async shareAndHref(text) {
+
+    if (text == "Share") {
+      await Share.share({
+        title: "E-SHOP",
+        text: "E-Shop is a online market for selling and purchasing.",
+        dialogTitle: "Share it",
+        url: "https://example.com"
+      })
+    }
+    else if (text == "Contact Us") location.href=this.menu_src[0].href
+  }
+
+  triggerLocation() {
+
+  }
   async setImage() {
-    
     //image service set image from localStorage or person-circle.svg
     this.img_source = await this.imgService.getImage()
   }

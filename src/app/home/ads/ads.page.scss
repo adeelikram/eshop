@@ -8,5 +8,8 @@
 ion-slides {
   height: 100%;
 }
+.menu-btn::part(icon) {
+  font-size: 40px;
+}
 
 

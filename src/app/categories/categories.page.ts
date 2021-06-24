@@ -18,9 +18,7 @@ export class CategoriesPage implements OnInit {
     public nav: NavController,
     private active: ActivatedRoute
   ) {
-    this.active.params.subscribe(data => {
-      this.from = data["from"]   //  data['from']  equals to  (explore or sell)
-    })
+    this.from = this.active.snapshot.paramMap.get("from")
   }
 
   ngOnInit() {

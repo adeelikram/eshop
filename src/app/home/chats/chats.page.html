@@ -1,25 +1,27 @@
-<ion-header>
+<ion-header mode="ios">
   <ion-toolbar class="toolbar-color">
-    <ion-buttons>
-      <ion-menu-button color="light" slot="start"></ion-menu-button>
+      <ion-menu-button [hidden]="!icon" color="light" slot="start" class="menu-btn"></ion-menu-button>
+      <ion-icon (click)="revert()" slot="start" name="checkmark" [hidden]="icon" class="icon-head ml-3" color="light"></ion-icon>
       <ion-title color="light" class="h3 m-auto">
-        Chats
+        <span [hidden]="!icon">Chats</span>
       </ion-title>
-    </ion-buttons>
+      <ion-icon button (click)="delete()" slot="end" name="trash" class="mr-3 icon-head" color="light" [hidden]="icon"></ion-icon>
+    
   </ion-toolbar>
 </ion-header>
 
-<ion-content id="local">
-  <ion-spinner class="spinner" [hidden]="hideSpin"></ion-spinner> 
-  <ion-list color="light">
-    <ion-item lines="full" button *ngFor="let el of material" (click)="doChats(el)">
+<ion-content>
+  <ion-spinner class="spinner" [hidden]="hideSpin"></ion-spinner>
+  <ion-icon src="assets/icon/box.svg" class="empty-icon" [hidden]="hideSpin && material.length"></ion-icon>
+  <ion-list color="light" id="list">
+    <ion-item lines="full" button  *ngFor="let el of material" (click)="doChats(el)" [id]="el.docId"  class="chats" >  
       <ion-avatar class="img-circle border-5" slot="start">
         <img [src]="el.photoURL" />
       </ion-avatar>
       <ion-label>
-        <h1 class="font-weight-bolder font-italic">{{el.displayName}}</h1>
-        <h5 class="font-weight-bolder font-italic msg">{{el.msg}}</h5>
-        <div class="d-block float-right">{{convertDate(el.date)}}</div>
+        <h1 class="font-weight-bolder font-italic color-light-shade">{{el.displayName}}</h1>
+        <h5 class="font-weight-bolder font-italic color-light-shade msg">{{el.msg}}</h5>
+        <div class="d-block float-right color-light-shade">{{convertDate(el.date)}}</div>
       </ion-label>
     </ion-item>
   </ion-list>
@@ -27,5 +29,4 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" pullFactor="0.8" pullMin="60" pullMax="120">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-
 </ion-content>

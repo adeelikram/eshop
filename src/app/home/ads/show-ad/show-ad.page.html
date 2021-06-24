@@ -1,16 +1,18 @@
 <ion-header>
   <ion-toolbar class="toolbar-color">
     <ion-title color="light">Ad Details</ion-title>
+    <ion-icon slot="end" color="light" class="mr-3 fav-icon" [hidden]="hideFav" [name]="fav_icon" (click)="Fav()"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-slides class="slides-top" pager="ios" #slides>
-    <ion-slide *ngFor="let v of product.images" role="img" aria-label="Ad has been Removed" [style.backgroundImage]="'url('+v+') !important'" class="slide-img">
+    <ion-slide *ngFor="let v of product.images" role="img" aria-label="Ad has been Removed"
+      [style.backgroundImage]="'url('+v+') !important'" class="slide-img">
       <!--Size of bullet has been set at global.scss-->
     </ion-slide>
   </ion-slides>
-  <ion-grid class="border-bottom" fixed>
+  <ion-grid class="border-bottom border-top" fixed>
     <ion-row [hidden]="from !=='ads'">
       <ion-col color="light"
         class="border-right border-bottom border-top h3 text-dark d-flex align-items-center justify-content-center">
@@ -24,17 +26,18 @@
       </ion-col>
     </ion-row>
     <div class="d-inline">
-      <span class="h4 text-dark">Details</span>
-      <ion-icon size="large" class="float-right" [hidden]="hideFav" [name]="fav_icon" (click)="Fav()"></ion-icon>
+      <span class="h4 text-dark mt-1">Details</span>
     </div>
-    <ion-row class="mt-1" *ngFor="let i of items()">
-      <ion-col class="text-ml-2 " size="6">
-        {{i[0].toUpperCase()+i.slice(1)}}
-      </ion-col>
-      <ion-col size="6">
-        {{forUserView[i]}}
-      </ion-col>
-    </ion-row>
+    <div class="mt-2">
+      <ion-row class="mt-2" *ngFor="let i of items()">
+        <ion-col class="text-ml-2 h6 space-color" size="6" >
+          {{i[0].toUpperCase()+i.slice(1)}}
+        </ion-col>
+        <ion-col size="6" class="h6 space-color" >
+          {{forUserView[i]}}
+        </ion-col>
+      </ion-row>
+    </div>
   </ion-grid>
 
   <ion-grid class="border-bottom ml-1" fixed>

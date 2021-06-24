@@ -1,19 +1,37 @@
-.img-circle{
-   width: 4rem;
-   height: 4rem;
+.img-circle {
+    width: 4rem;
+    height: 4rem;
 }
-.msg{
+.msg {
     letter-spacing: 1px;
     overflow: hidden;
 }
-.spinner{
-    position: absolute;
+
+@mixin spin-icon {
+    position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
     top: 0;
     margin: auto;
+    color: rgb(12, 156, 204);
+}
+.spinner {
+    @include spin-icon;
     height: 3rem;
     width: 3rem;
-    color: rgb(12, 156, 204);;
+}
+.empty-icon {
+    @include spin-icon;
+    height: 6rem;
+    width: 6rem;
+}
+.color-light-shade {
+    color: #343a40;
+}
+.icon-head {
+    font-size: 40px !important;
+}
+.menu-btn::part(icon) {
+    font-size: 40px;
 }

@@ -1,25 +1,31 @@
 <ion-header mode="ios">
   <ion-toolbar class="toolbar-color">
-    <ion-item class="item" lines="none">
-      <ion-icon name="location-outline" color="light"></ion-icon>
-      <ion-label>Optional Location</ion-label>
+    <ion-item lines="none" class="item">
+      <ion-menu-button color="light" class="menu-btn"></ion-menu-button>
+      <ion-title color="light" class="h3 mr-5">
+        Explore
+      </ion-title>
     </ion-item>
-    <ion-buttons class="">
-      <ion-menu-button color="light" slot="start"></ion-menu-button>
-      <ion-searchbar mode="md">
-      </ion-searchbar>
+    <ion-buttons>
+      <form (submit)="getVal(input)">
+        <ion-searchbar mode="md" class="searchbar" #input>
+        </ion-searchbar>
+      </form>
+      <ion-icon name="filter-outline" (click)="openFilter($event)" color="light" slot="end" class="filter"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item class="h4 mt-3" lines="none">
-    <span class=" text-info ml-1">Browse categories</span>
-    <ion-chip slot="end" class="text-center mx-auto" [routerLink]="['/categories',{from:'explore'}]">
+  <ion-item class="mt-3" lines="none">
+    <ion-chip class="text-center lead mx-auto all" [routerLink]="['/categories',{from:'explore'}]">
       All Categories
     </ion-chip>
   </ion-item>
-  <ion-card>
+
+  <ion-spinner class="spinner" [hidden]="hideSpin"></ion-spinner>
+  <ion-icon src="assets/icon/box.svg" class="empty-icon" [hidden]="hideSpin && show.length"></ion-icon>
+  <!-- <ion-card>
     <ion-grid>
       <ion-row *ngFor="let i of category" class="text-center">
         <ion-col (click)="goNext(i[0].title)"
@@ -47,14 +53,28 @@
           <ion-ripple-effect></ion-ripple-effect>
         </ion-col>
       </ion-row>
-      
+
     </ion-grid>
-  </ion-card>
- 
-  
+  </ion-card> -->
+
+  <ion-list>
+    <ion-item button *ngFor="let i of show" (click)="passDataToShowAd(i)" [hidden]="!show" lines="none"
+      class="mt-2 ml-4 border rounded">
+      <ion-thumbnail slot="start" class="thumbnail-margin" size="large">
+        <ion-img size="large" class="rounded" [src]="i.data().images[0]">
+        </ion-img>
+      </ion-thumbnail>
+      <ion-label class="ml-3 mr-0">
+        <h2 color="primary">{{i.data().data.title}}</h2>
+        <p>RS {{i.data().data.price}}</p>
+        <p class="overflow-hidden w-75">{{i.data().data.describe}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 
 
- <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" pullFactor="0.8" pullMin="60" pullMax="120">
-   <ion-refresher-content></ion-refresher-content>
- </ion-refresher>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" pullFactor="0.8" pullMin="60" pullMax="120">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 </ion-content>

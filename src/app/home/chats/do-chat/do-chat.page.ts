@@ -15,9 +15,10 @@ export class DoChatPage {
   person = { displayName: "", photoURL: "", email: "" }
   docId = ""
   status = "offline"
-  socket = io("http://localhost:3000")
+  socket = io("https://eshop-socket.herokuapp.com")
   me = ""
   type_timeout
+  ourData
   @ViewChild("view") view
   constructor(
     private homeTabs: HomeTabsService,
@@ -34,7 +35,10 @@ export class DoChatPage {
   }
 
   async ngOnInit() {
-    this.me = (await Storage.get({ key: "user_of_eshop" })).value
+    var data = JSON.parse((await Storage.get({ key: "user_data_eshop" })).value)
+    this.me = data["email"]
+    var { email, displayName, photoURL } = data
+    this.ourData = { email, displayName, photoURL:(photoURL)?photoURL:"assets/person-circle.svg" }
     this.socketOperations()
   }
 
@@ -113,9 +117,14 @@ export class DoChatPage {
 
   async sendMessage(input) {
     if (!input.value) return
-    this.db.database.ref(`eshop/${await this.getDocId()}`).push({ date: Date.now(), msg: input.value, ...this.person })
-    input.value = ""
-    this.view.nativeElement.scrollIntoView()
+    try {
+      await this.db.database.ref(`eshop/${await this.getDocId()}`).push({ date: Date.now(), msg: input.value, ...this.ourData })
+      input.value = ""
+      this.view.nativeElement.scrollIntoView()
+    } catch (error) {
+      alert(error)
+    }
+
   }
 
   textChange() {
@@ -136,5 +145,5 @@ export class DoChatPage {
     tmp += " " + perm
     return tmp
   }
-  
+
 }

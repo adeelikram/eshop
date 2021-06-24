@@ -15,10 +15,10 @@
 <ion-content>
 
   <div *ngFor="let e of messages" class="mb-3 mt-2 d-flex "
-    [ngStyle]="{flexDirection: (e.email==person.email)?'row-reverse':''}">
+    [ngStyle]="{flexDirection: (e.email!=person.email)?'row-reverse':''}">
     <img alt="Profile" [src]="e.photoURL" class="profile ml-1 mr-1" />
     <div class="h-auto rounded ml-1 mr-1 msg h-auto"
-      [ngStyle]="{background:(e.email==person.email)?'#44308c':'#79614d'}">
+      [ngStyle]="{background:(e.email!=person.email)?'#44308c':'#79614d'}">
       <div class="px-2 pt-1 text-white h6 d-block h-auto">{{e.msg}}</div>
       <div class="d-block px-2 date text-white">{{convertDate(e.date)}}</div>
     </div>

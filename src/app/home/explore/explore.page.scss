@@ -1,4 +1,41 @@
-.item{
-    --background:transparent;
-    margin-left:-15px 
+.searchbar{
+    width: 85vw !important;
 }
+.filter{
+    padding-left: -100vw;
+    font-size: 30px !important;
+}
+.thumbnail-margin {
+    margin-left: -10px;
+    margin-right: -5px;
+    height: 70px;
+    width: 70px;
+}
+@mixin spin-icon {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    color: rgb(12, 156, 204);
+}
+.spinner {
+    @include spin-icon;
+    height: 3rem;
+    width: 3rem;
+    z-index: 2;
+}
+.empty-icon {
+    @include spin-icon;
+    height: 6rem;
+    width: 6rem;
+}
+.menu-btn::part(icon) {
+    font-size: 40px;
+}
+.item {
+    --background: transparent;
+    left: -3vw;
+}
+

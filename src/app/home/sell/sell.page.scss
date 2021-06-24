@@ -1,11 +1,14 @@
-.title{
-    width:auto
+.title {
+    width: auto;
 }
-.col{
-    height: 7rem; 
+.col {
+    height: 7rem;
 }
-.icon{
+.icon {
     background-size: 3rem;
     background-color: lightcyan;
-    border-radius:5px ;
+    border-radius: 5px;
+}
+.menu-btn::part(icon) {
+    font-size: 40px;
 }

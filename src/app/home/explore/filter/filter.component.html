@@ -1,0 +1,20 @@
+<ion-content class="w-100 h-100">
+  <label for="" class="h3 font-weight-bolder text-center w-100 color mt-2">Price Range</label>
+  <div class="d-flex">
+    <input type="number" #from placeholder="Price" class="form-control inp-width my-auto mx-auto">
+    <span class="mx-2 my-auto">to</span>
+    <input type="number" #to placeholder="Price" class="form-control  inp-width my-auto mx-auto">
+  </div>
+  <ion-item class="my-3">
+    <ion-select class="select" #date interface="action-sheet" placeholder="Date">
+      <ion-select-option value="empty">No Date Filter</ion-select-option>
+      <ion-select-option value="today">Today</ion-select-option>
+      <ion-select-option value="week">This Week</ion-select-option>
+      <ion-select-option value="month">This Month</ion-select-option>
+      <ion-select-option value="year">This Year</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-button class="ok" (click)="dismiss(from.value,to.value,date.value)" expand="block" shape="round">
+    OK
+  </ion-button>
+</ion-content>

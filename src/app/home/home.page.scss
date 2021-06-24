@@ -4,7 +4,6 @@ ion-tab-bar {
 ion-tab-button {
   font-size: 16px;
   font-weight: bolder;
-  
 }
 ion-toolbar {
   --background: var(--ion-color-info);
@@ -12,4 +11,24 @@ ion-toolbar {
 .menu-avatar {
   width: 8rem !important;
   height: 8rem !important;
+}
+.email {
+  margin-top: -2vh !important;
+}
+.home-tool {
+  background-image: linear-gradient(to right, #89f7fe, #66a6ff);
+  border: none !important;
+}
+.name {
+  font-size: 30px;
+  background: -webkit-linear-gradient(#eee, #333,#777);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.menu-content{
+  --background: linear-gradient(to right, #89f7fe, #66a6ff);
+}
+.menu-content > *{
+  opacity: 1;
+  --background: linear-gradient(to right, #89f7fe, #66a6ff);
 }
