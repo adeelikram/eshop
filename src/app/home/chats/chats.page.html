@@ -14,7 +14,7 @@
   <ion-spinner class="spinner" [hidden]="hideSpin"></ion-spinner>
   <ion-icon src="assets/icon/box.svg" class="empty-icon" [hidden]="hideSpin && material.length"></ion-icon>
   <ion-list color="light" id="list">
-    <ion-item lines="full" button  *ngFor="let el of material" (click)="doChats(el)" [id]="el.docId"  class="chats" >  
+    <ion-item lines="full" button  *ngFor="let el of material" (click)="doChats($event,el)" (touchstart)="touchStart($event)" (touchend)="touchEnd($event)" [id]="el.docId"  class="chats" >  
       <ion-avatar class="img-circle border-5" slot="start">
         <img [src]="el.photoURL" />
       </ion-avatar>

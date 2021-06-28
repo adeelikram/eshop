@@ -60,8 +60,8 @@ export class HomePage {
   async ngOnInit() {
     this.setImage()
     var data = JSON.parse((await Storage.get({ key: "user_data_eshop" })).value)
-    this.person.displayName = data["displayName"]
-    this.person.email = data["email"]
+    this.person.displayName = data?.displayName
+    this.person.email = data?.email
   }
 
   setCurrentTab() {
@@ -122,7 +122,7 @@ export class HomePage {
         url: "https://example.com"
       })
     }
-    else if (text == "Contact Us") location.href=this.menu_src[0].href
+    else if (text == "Contact Us") location.href = this.menu_src[0].href
   }
 
   triggerLocation() {
@@ -131,5 +131,6 @@ export class HomePage {
   async setImage() {
     //image service set image from localStorage or person-circle.svg
     this.img_source = await this.imgService.getImage()
+    console.log(this.img_source)
   }
 }

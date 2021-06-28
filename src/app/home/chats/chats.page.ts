@@ -40,22 +40,19 @@ export class ChatsPage {
   }
 
   async ngAfterViewInit() {
-    document.getElementById("list").addEventListener("DOMNodeInserted", (ev) => {
-      ev.target.addEventListener("click", (ev) => {
-        if (!this.icon) ev.stopImmediatePropagation()
-      }, true)
-      ev.target.addEventListener("mouseup", () => {
-        clearTimeout(this.del_time)
-      })
-      ev.target.addEventListener("mousedown", (ev) => {
-        if (!this.icon) ev.target["parentElement"]["parentElement"].color = "success"
-        else this.del_time = setTimeout(() => {
-          ev.target.removeEventListener("click", () => { })
-          this.icon = false
-          ev.target["parentElement"]["parentElement"].color = "success"
-        }, 500)
-      })
-    })
+    
+  }
+
+  touchStart(ev) {
+    if (!this.icon) this.checkTags(ev)
+    else this.del_time = setTimeout(() => {
+      this.icon = false
+      ev.target.color = "success"
+    }, 500)
+  }
+
+  touchEnd(ev) {
+    clearTimeout(this.del_time)
   }
 
   processDB(data: DataSnapshot) {
@@ -102,7 +99,21 @@ export class ChatsPage {
     return hash
   }
 
-  doChats(el) {
+  checkTags(ev){
+     switch(ev.target.tagName){
+       case "H1":case "H5":case "DIV":case "IMG":{
+           ev.target["parentElement"]["parentElement"].color="success" 
+       }
+       default:{
+         ev.target.color="success"
+       }
+     }
+  }
+  doChats(ev,el) {
+    if (!this.icon) {
+      this.checkTags(ev)
+      return
+    }
     this.nav.navigateForward(["/home/chats/do-chat", { displayName: el.displayName, email: el.email, photoURL: el.photoURL, docId: el.docId }])
   }
 
@@ -119,13 +130,15 @@ export class ChatsPage {
 
   revert() {
     this.icon = true
-    
+
     var array = document.querySelectorAll(".chats")
     for (let el of array[Symbol.iterator]()) {
       if (!el["color"]) continue
       el["color"] = undefined
     }
   }
+
+
 
   doRefresh(event) {
     setTimeout(() => {

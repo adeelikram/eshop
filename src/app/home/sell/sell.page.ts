@@ -61,7 +61,7 @@ export class SellPage {
     var user = await Storage.get({ key: "user_of_eshop" })
     if (!user.value) {
       localStorage.removeItem("viewed")           //for install router guard 
-      this.nav.navigateForward(["install", { sell: true }])
+      this.nav.navigateForward(["install"])
     }
     else this.nav.navigateForward(["/home/expand-cate", { product: product, from: "sell" }], {
       animated: true,

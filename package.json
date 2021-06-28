@@ -35,7 +35,7 @@
     "CALL": "git://github.com/adeelikram/call.git",
     "SMS": "git://github.com/adeelikram/sms.git",
     "bootstrap": "^4.5.3",
-    "capacitor-firebase-auth": "^2.3.5",
+    "capacitor-firebase-auth": "^2.4.0",
     "com-badrit-base64": "^0.2.0",
     "com-sarriaroman-photoviewer": "^1.2.5",
     "cordova-plugin-device": "^2.0.3",

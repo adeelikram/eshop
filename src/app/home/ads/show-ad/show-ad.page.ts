@@ -7,7 +7,7 @@ import { HomeTabsService } from "../../hide-home-tabs.service"
 import { ImageInLocalStorageService } from "../../../image-in-local-storage.service"
 
 import firebase from 'firebase';
-var { sms, call, Toast } = Plugins;
+var { sms, call, Toast, Storage } = Plugins;
 declare var google
 @Component({
   selector: 'app-show-ad',
@@ -130,7 +130,13 @@ export class ShowAdPage {
   }
 
   async chat() {
-    if (this.parent.email == this.user) alert("You created this post.\nSo you can't chat with yourself")
+    var data = (await Storage.get({ key: "user_of_eshop" })).value
+    console.log(data)
+    if (!data) {
+      this.nav.navigateForward(["install"])
+
+    }
+    else if (this.parent.email == this.user) alert("You created this post.\nSo you can't chat with yourself")
     else this.nav.navigateForward(['home/chats/do-chat', { ...this.parent }])
   }
 

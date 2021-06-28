@@ -24,7 +24,7 @@ export class SlidesPage {
     initialSlide: 0
   };
   slider: is
-  sell: boolean
+
   constructor(
 
     private nav: NavController,
@@ -32,17 +32,10 @@ export class SlidesPage {
     private popover: PopoverController,
     private active: ActivatedRoute,
     public platform: Platform,
-    private alertController: AlertController,
+    private alertController: AlertController
+  ) { }
 
-  ) {
-    this.userAuthStateChanged()
-  }
 
-  async userAuthStateChanged() {
-    this.active.params.subscribe(data => {
-      this.sell = data["sell"]
-    })
-  }
 
   delProperty(user) {
     ["uid", "photoURL", "phoneNumber"].forEach(e => delete user.providerData[0][e])
@@ -55,7 +48,7 @@ export class SlidesPage {
       })
 
     } catch (error) {
-      alert(error)
+      alert("Error" +error)
     }
   }
   async facebook() {
@@ -102,8 +95,10 @@ export class SlidesPage {
 
   async storeInFirestore(user, token) {
     var data = { ...user }
+    
     Object.assign(data, { token: token })
     var { email } = data;
+    console.log(data) 
     var resp = await this.db.firestore.collection("eshop").doc(email).set(data, { merge: true })
     resp = (await this.db.firestore.collection("eshop").doc(email).get()).data() as any
     await Storage.set({ key: "user_data_eshop", value: JSON.stringify(resp) })
@@ -112,8 +107,7 @@ export class SlidesPage {
       await this.popover.dismiss()
       localStorage.setItem("viewed", "true")
       //** */
-      if (this.sell) this.nav.navigateForward("home/sell", { replaceUrl: true })
-      else this.nav.navigateForward(["home"], { replaceUrl: true })
+      this.nav.back()
       /** */
     } catch (error) {
       (async () => {
@@ -138,11 +132,10 @@ export class SlidesPage {
   }
 
 
-  close() {
+  async close() {
     localStorage.setItem("viewed", "true") // for router guard in app-routing-module 
-    this.nav.navigateForward("home")
+    this.nav.back()
   }
-
 
 }
 
