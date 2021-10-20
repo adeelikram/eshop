@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FilesystemDirectory, FilesystemEncoding, Plugins } from "@capacitor/core"
+import { FilesystemDirectory, Plugins } from "@capacitor/core"
 
 import { AlertController, NavController } from "@ionic/angular"
 import { ImageInLocalStorageService } from '../../image-in-local-storage.service';
@@ -16,14 +16,16 @@ export class AccountPage {
   animated = false
   hover = false
   registered
-
   constructor(
     private alertController: AlertController,
     private nav: NavController,
     private imgService: ImageInLocalStorageService
   ) {
-    document.addEventListener("profileUploaded", (ev) => {
+    document.addEventListener("profileUploaded",async(ev) => {
       this.image = ev["image"]
+    })
+    document.addEventListener("registered",()=>{
+      this.registered = true
     })
   }
 
@@ -63,7 +65,7 @@ export class AccountPage {
   }
 
   seeProfile() {
-    this.nav.navigateForward(['home/account/profile'], { replaceUrl: false })
+    this.nav.navigateForward(['home/account/profile'])
   }
 
   async delete() {

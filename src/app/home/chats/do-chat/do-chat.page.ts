@@ -113,6 +113,7 @@ export class DoChatPage {
 
   ionViewWillLeave() {
     this.socket.emit("going", { user: this.me })
+    this.homeTabs.showHomeTabs()
   }
 
   async sendMessage(input) {

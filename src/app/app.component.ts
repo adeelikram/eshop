@@ -72,17 +72,17 @@ export class AppComponent {
 
   backButton() {
     this.platform.backButton.subscribeWithPriority(-1, async (event) => {
-      if (!this.routerlet.canGoBack()) {
-        var res = await Plugins.Modals.confirm({
-          message: "Do you want to Exit App ?",
-          okButtonTitle: "OK",
-          cancelButtonTitle: "CANCEL",
-          title: "Get At Home"
-        })
-        if (res.value) {
-          navigator["app"].exitApp()
-        }
-      }
+      // if (!this.routerlet.canGoBack()) {
+      //   var res = await Plugins.Modals.confirm({
+      //     message: "Do you want to Exit App ?",
+      //     okButtonTitle: "OK",
+      //     cancelButtonTitle: "CANCEL",
+      //     title: "Get At Home"
+      //   })
+      //   if (res.value) {
+      //     navigator["app"].exitApp()
+      //   }
+      // }
     })
   }
 

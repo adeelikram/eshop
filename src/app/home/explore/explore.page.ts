@@ -156,7 +156,7 @@ export class ExplorePage {
     product = i.data()
 
     this.hideHomeTabs.hideHomeTabs()
-    this.nav.navigateForward(["home/ads/show-ad", { data: JSON.stringify({ parentData: parent, productData: product }), from: "explore", id: i.id }])
+    this.nav.navigateForward(["home/show-ad", { data: JSON.stringify({ parentData: parent, productData: product }), from: "explore", id: i.id }])
   }
 
   doRefresh(event) {

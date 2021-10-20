@@ -7,10 +7,6 @@ const routes: Routes = [
   {
     path: '',
     component: AdsPage
-  },
-  {
-    path:"show-ad",
-    loadChildren:()=>import("./show-ad/show-ad.module").then(m=>m.ShowAdPageModule)
   }
 ];
 

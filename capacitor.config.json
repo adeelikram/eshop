@@ -29,6 +29,5 @@
     "allowNavigation": [
       "*.firebaseapp.*"
     ]
-  },
-  "linuxAndroidStudioPath": "/snap/android-studio/current/android-studio/bin/studio.sh"
+  }
 }

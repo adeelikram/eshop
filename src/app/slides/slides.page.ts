@@ -9,6 +9,7 @@ import { ProgressBarPage } from "./progress-bar/progress-bar.page"
 import { ActivatedRoute } from '@angular/router';
 
 import { cfaSignIn, cfaSignOut } from "capacitor-firebase-auth"
+import { ImageInLocalStorageService } from '../image-in-local-storage.service';
 
 var { Storage } = Plugins
 
@@ -32,7 +33,8 @@ export class SlidesPage {
     private popover: PopoverController,
     private active: ActivatedRoute,
     public platform: Platform,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private imgService: ImageInLocalStorageService
   ) { }
 
 
@@ -75,7 +77,7 @@ export class SlidesPage {
   }
 
   async notificationTokenNative(data) {  //Native
-    (await this.popover.create({ component: ProgressBarPage, animated: true })).present()
+    (await this.popover.create({ component: ProgressBarPage, animated: true,backdropDismiss:false })).present()
     // var push = Plugins.PushNotifications
     // var permission = await push.requestPermission()
     // if (permission.granted) {
@@ -105,7 +107,13 @@ export class SlidesPage {
     await Storage.set({ key: "user_of_eshop", value: email })
     try {
       await this.popover.dismiss()
+      // id coming from accounts
       localStorage.setItem("viewed", "true")
+      var event = new Event("registered")
+      document.dispatchEvent(event)
+      event = new Event("profileUploaded")
+      event["image"] = await this.imgService.getImage()
+      document.dispatchEvent(event)
       //** */
       this.nav.back()
       /** */

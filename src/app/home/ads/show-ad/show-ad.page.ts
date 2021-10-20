@@ -137,7 +137,7 @@ export class ShowAdPage {
 
     }
     else if (this.parent.email == this.user) alert("You created this post.\nSo you can't chat with yourself")
-    else this.nav.navigateForward(['home/chats/do-chat', { ...this.parent }])
+    else this.nav.navigateForward(['home/do-chat', { ...this.parent }])
   }
 
   makeCall() {

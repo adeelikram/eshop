@@ -7,10 +7,6 @@ const routes: Routes = [
   {
     path: '',
     component: ChatsPage
-  },
-  {
-    path: 'do-chat',
-    loadChildren: () => import('./do-chat/do-chat.module').then( m => m.DoChatPageModule)
   }
 ];
 

@@ -138,7 +138,7 @@ export class AdsPage {
       product = temp
     }
     this.hideHomeTabs.hideHomeTabs()
-    this.nav.navigateForward(["home/ads/show-ad", { data: JSON.stringify({ parentData: parent, productData: product }), from: slide, id: i.id }])
+    this.nav.navigateForward(["home/show-ad", { data: JSON.stringify({ parentData: parent, productData: product }), from: slide, id: i.id }])
   }
 
 

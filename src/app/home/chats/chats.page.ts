@@ -21,7 +21,10 @@ export class ChatsPage {
   icon = true
   del_time: any
   deny_list: any
-  constructor(private db: AngularFireDatabase, private homeTabs: HomeTabsService, private nav: NavController) {
+  constructor(
+    private db: AngularFireDatabase,
+    private homeTabs: HomeTabsService,
+    private nav: NavController) {
   }
 
   async ngOnInit() {
@@ -39,9 +42,10 @@ export class ChatsPage {
     }, 4000)
   }
 
-  async ngAfterViewInit() {
-    
+  ionViewWillLeave() {
+    this.homeTabs.hideHomeTabs()
   }
+  
 
   touchStart(ev) {
     if (!this.icon) this.checkTags(ev)
@@ -87,9 +91,7 @@ export class ChatsPage {
     return tmp
   }
 
-  ionViewWillEnter() {
-    this.homeTabs.showHomeTabs()
-  }
+  
   hash(email: string) {
     var len = email.length
     var hash = ""
@@ -99,22 +101,22 @@ export class ChatsPage {
     return hash
   }
 
-  checkTags(ev){
-     switch(ev.target.tagName){
-       case "H1":case "H5":case "DIV":case "IMG":{
-           ev.target["parentElement"]["parentElement"].color="success" 
-       }
-       default:{
-         ev.target.color="success"
-       }
-     }
+  checkTags(ev) {
+    switch (ev.target.tagName) {
+      case "H1": case "H5": case "DIV": case "IMG": {
+        ev.target["parentElement"]["parentElement"].color = "success"
+      }
+      default: {
+        ev.target.color = "success"
+      }
+    }
   }
-  doChats(ev,el) {
+  doChats(ev, el) {
     if (!this.icon) {
       this.checkTags(ev)
       return
     }
-    this.nav.navigateForward(["/home/chats/do-chat", { displayName: el.displayName, email: el.email, photoURL: el.photoURL, docId: el.docId }])
+    this.nav.navigateForward(["/home/do-chat", { displayName: el.displayName, email: el.email, photoURL: el.photoURL, docId: el.docId }])
   }
 
   async delete() {

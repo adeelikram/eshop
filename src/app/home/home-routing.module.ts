@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
-    children:[
+    children: [
       {
         path: 'explore',
         loadChildren: () => import('./explore/explore.module').then(m => m.ExplorePageModule),
@@ -14,7 +14,7 @@ const routes: Routes = [
       {
         path: 'sell',
         loadChildren: () => import('./sell/sell.module').then(m => m.SellPageModule),
-        
+
       },
       {
         path: 'ads',
@@ -29,15 +29,23 @@ const routes: Routes = [
         loadChildren: () => import('./account/account.module').then(m => m.AccountPageModule)
       },
       {
-        path:"",
-        redirectTo:"explore",
-        pathMatch:"full"
+        path: "",
+        redirectTo: "explore",
+        pathMatch: "full"
       }
     ]
   },
   {
     path: 'expand-cate',
     loadChildren: () => import('./expand-cate/expand-cate.module').then(m => m.ExpandCatePageModule)
+  },
+  {
+    path: "show-ad",
+    loadChildren: () => import('./ads/show-ad/show-ad.module').then(m => m.ShowAdPageModule)
+  },
+  {
+    path: 'do-chat',
+    loadChildren: () => import('./chats/do-chat/do-chat.module').then( m => m.DoChatPageModule)
   }
 ];
 

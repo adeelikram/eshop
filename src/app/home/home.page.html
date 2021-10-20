@@ -2,10 +2,11 @@
   <ion-header class="home-tool">
 
     <ion-avatar class="mx-auto menu-avatar mt-4 mb-2" size="large" color="light">
-      <ion-img [src]="img_source"></ion-img>
+      
+      <img id="menu-profile-img" [src]="img_source">
     </ion-avatar>
-    <div class="text-center h3 name">{{person.displayName}}</div>
-    <div class="mb-1 mt-0 text-center text-muted email">{{person.email}}</div>
+    <div id="profile-name" class="text-center h3 name">{{person.displayName}}</div>
+    <div id="profile-email" class="mb-1 mt-0 text-center text-muted email">{{person.email}}</div>
     <div id="google_translate_element"></div>
 
   </ion-header>

@@ -49,11 +49,16 @@ export class HomePage {
     private imgService: ImageInLocalStorageService
   ) {
     document.addEventListener("hometabs", (ev) => this.hide_nav = ev["value"])
-    document.addEventListener("profileUploaded", (ev) => {
-      this.img_source = ev["image"]
+    document.addEventListener("profileUploaded",async (ev) => {
+      document.querySelector("#menu-profile-img")["src"] = ev["image"]
+      var data = JSON.parse((await Storage.get({ key: "user_data_eshop" })).value)
+      document.querySelector("#profile-name").innerHTML = data?.displayName
+      document.querySelector("#profile-email").innerHTML = data?.email
     })
     document.addEventListener("profileRemoved", (ev) => {
       this.img_source = ev["image"]
+      document.querySelector("#profile-name").innerHTML = ""
+      document.querySelector("#profile-email").innerHTML = ""
     })
   }
 
@@ -131,6 +136,5 @@ export class HomePage {
   async setImage() {
     //image service set image from localStorage or person-circle.svg
     this.img_source = await this.imgService.getImage()
-    console.log(this.img_source)
   }
 }

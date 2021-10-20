@@ -16,9 +16,6 @@ ion-img{
     left:100px
 }
 
-.mb-no{
-    margin-bottom: -13px;
-}
 .preview{
     position: absolute ;
     top:10px;
@@ -31,6 +28,13 @@ ion-img{
 
 .my-container:hover .preview{
     display: block;
+}
+.img-contain{
+ height: auto;
+}
+.cardic{
+    margin-top: 0%;
+    margin-bottom: 0%;
 }
 
 

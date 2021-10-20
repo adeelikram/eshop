@@ -12,8 +12,8 @@
 <ion-item [hidden]="images.length==0 || images.length==3" lines="none">
   <ion-button size="default" slot="end" (click)="takePhoto()">select More</ion-button>
 </ion-item>
-  <div *ngFor="let i of images" [hidden]="!i">
-    <ion-card color="info" class="w-50 mx-auto">
+  <div *ngFor="let i of images" [hidden]="!i" class="img-contain">
+    <ion-card color="info" class="w-50 mx-auto cardic">
       <ion-card-content color="primary" class="ion-no-margin">
         <div class="my-container">
         <ion-img class="border rounded bg-secondary" [src]="i"></ion-img>
